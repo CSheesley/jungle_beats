@@ -98,6 +98,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
   require 'pry'
-  
+
   require_relative '../lib/linked_list'
+  require_relative '../lib/node'
 end
