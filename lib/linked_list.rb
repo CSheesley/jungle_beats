@@ -6,23 +6,76 @@ class LinkedList
     @count = 0
   end
 
+  def prepend(data)
+    previous_head = @head
+    @head = Node.new(data)
+    @head.next_node = previous_head
+    @count += 1
+  end
+
   def append(data)
     if @head.nil?
       @head = Node.new(data)
     else
-      @head.next_node = Node.new(data)
+      add_node(data)
     end
     @count += 1
   end
 
-  def to_string
-    string = []
-    head_string = self.head.data.to_s
-    next_node_string = self.head.next_node.data.to_s
-
-    string << head_string unless head_string.nil?
-    string << next_node_string unless next_node_string.nil?
-    # string << self.head.next_node.each { |next_node| string << next_node.data }
-    string.join(" ")
+  def add_node(data)
+    if @head.next_node.nil?
+      @head.next_node = Node.new(data)
+    else
+      last_node.next_node = Node.new(data)
+    end
   end
+
+  def last_node
+    find_last_node = @head.next_node
+    until find_last_node.next_node.nil?
+      find_last_node = find_last_node.next_node
+    end
+    find_last_node
+  end
+
+  def to_string
+    string = ""
+    head = self.head
+    node = @head.next_node
+
+    string << ("#{head.data.to_s} ") unless head.nil?
+
+    each_node_to_string(node, string)
+    string.rstrip
+  end
+
+  def each_node_to_string(node, string)
+    unless node.nil?
+      until node.next_node.nil?
+        string << ("#{node.data.to_s} ")
+        node = node.next_node
+      end
+      string << ("#{node.data.to_s} ")
+    end
+    string
+  end
+
+  def insert(index, data)
+    current_node = node_at_index(index)
+    prior_node = node_at_index(index - 1)
+
+    prior_node.next_node = Node.new(data)
+    prior_node.next_node.next_node = current_node
+  end
+
+  def node_at_index(index)
+    node = @head
+    counter = 0
+    until counter == index
+      node = node.next_node
+      counter += 1
+    end
+    node
+  end
+
 end
