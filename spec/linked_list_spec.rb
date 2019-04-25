@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 RSpec.describe LinkedList, type: :class do
 
-  xit 'it adds a single node' do
+  it 'it adds a single node' do
 
     list = LinkedList.new
     expect(list.head).to eq(nil)
@@ -15,7 +15,7 @@ RSpec.describe LinkedList, type: :class do
     expect(list.to_string).to eq("doop")
   end
 
-  it 'it adds a second node' do
+  it 'it cad add a second node' do
 
     list = LinkedList.new
 
@@ -30,6 +30,36 @@ RSpec.describe LinkedList, type: :class do
 
     expect(list.count).to eq(2)
     expect(list.to_string).to eq("doop deep")
+  end
+
+  it 'it can add a third node' do
+
+    list = LinkedList.new
+
+    list.append("doop")
+    list.append("deep")
+    list.append("beep")
+
+    expect(list.count).to eq(3)
+    expect(list.to_string).to eq("doop deep beep")
+  end
+
+  it 'it can prepend and insert nodes' do
+
+    list = LinkedList.new
+
+    list.append("plop")
+    expect(list.to_string).to eq("plop")
+
+    list.append("suu")
+    list.prepend("dop")
+
+    expect(list.count).to eq(3)
+    expect(list.to_string).to eq("dop plop suu")
+
+    list.insert(1, "woo")
+
+    expect(list.to_string).to eq("dop woo plop suu")
   end
 
 end
