@@ -77,6 +77,13 @@ RSpec.describe LinkedList, type: :class do
     expect(list.find(2, 1)).to eq("shi")
     expect(list.find(1, 3)).to eq("woo shi shu")
 
+    expect(list.includes?("deep")).to eq(true)
+    expect(list.includes?("dep")).to eq(false)
+
+    expect(list.pop).to eq("blop")
+    expect(list.pop).to eq("shu")
+
+    expect(list.to_string).to eq("deep woo shi")
   end
 
 end
