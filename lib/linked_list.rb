@@ -42,22 +42,30 @@ class LinkedList
   end
 
   def to_string
-    @strings.rstrip
+    string = ""
+    head = self.head
+    node = @head.next_node
+
+    string << ("#{head.data.to_s} ") unless head.nil?
+
+    each_node_to_string(node, string)
+    string.rstrip
+  end
+
+  def each_node_to_string(node, string)
+    unless node.nil?
+      until node.next_node.nil?
+        string << ("#{node.data.to_s} ")
+        node = node.next_node
+      end
+      string << ("#{node.data.to_s} ")
+    end
+    string
   end
 
 end
 
 
-# def to_string
-#   string = ""
-#   head = self.head
-#   next_node = self.head.next_node
-#
-#   string << ("#{head.data.to_s} ") unless head.nil?
-#   string << ("#{next_node.data.to_s} ") unless next_node.nil?
-#   # string << self.head.next_node.each { |next_node| string << next_node.data }
-#   string.rstrip
-# end
 
 #
 # def find_at_index(index)

@@ -15,7 +15,7 @@ RSpec.describe LinkedList, type: :class do
     expect(list.to_string).to eq("doop")
   end
 
-  it 'it cad add a second node' do
+  it 'it can add a second node' do
 
     list = LinkedList.new
 
