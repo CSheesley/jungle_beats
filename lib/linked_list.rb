@@ -4,7 +4,6 @@ class LinkedList
   def initialize
     @head = nil
     @count = 0
-    @strings = ""
   end
 
   def prepend(data)
@@ -12,7 +11,6 @@ class LinkedList
     @head = Node.new(data)
     @head.next_node = previous_head
     @count += 1
-    @strings << "#{data} "
   end
 
   def append(data)
@@ -22,7 +20,6 @@ class LinkedList
       add_node(data)
     end
     @count += 1
-    @strings << "#{data} "
   end
 
   def add_node(data)
@@ -61,6 +58,24 @@ class LinkedList
       string << ("#{node.data.to_s} ")
     end
     string
+  end
+
+  def insert(index, data)
+    current_node = node_at_index(index)
+    prior_node = node_at_index(index - 1)
+
+    prior_node.next_node = Node.new(data)
+    prior_node.next_node.next_node = current_node
+  end
+
+  def node_at_index(index)
+    node = @head
+    counter = 0
+    until counter == index
+      node = node.next_node
+      counter += 1
+    end
+    node
   end
 
 end
