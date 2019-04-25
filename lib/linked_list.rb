@@ -78,4 +78,18 @@ class LinkedList
     node
   end
 
+  def find(index, return_count)
+    node = node_at_index(index)
+    counter = 0
+    string = ""
+
+    until counter == return_count
+      string << ("#{node.data.to_s} ")
+      node = node.next_node
+      counter += 1
+    end
+
+    string.rstrip
+  end
+
 end
