@@ -102,4 +102,14 @@ class LinkedList
     check
   end
 
+  def pop
+    node = @head
+    until node.next_node.next_node.nil?
+      node = node.next_node
+    end
+    popped_data = node.next_node.data
+    node.next_node = nil
+    popped_data
+  end
+
 end
