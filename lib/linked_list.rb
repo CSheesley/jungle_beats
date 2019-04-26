@@ -31,11 +31,11 @@ class LinkedList
   end
 
   def last_node
-    find_last_node = @head.next_node
-    until find_last_node.next_node.nil?
-      find_last_node = find_last_node.next_node
+    node = @head.next_node
+    until node.next_node.nil?
+      node = node.next_node
     end
-    find_last_node
+    node
   end
 
   def to_string
@@ -71,11 +71,45 @@ class LinkedList
   def node_at_index(index)
     node = @head
     counter = 0
+
     until counter == index
       node = node.next_node
       counter += 1
     end
     node
+  end
+
+  def find(index, return_count)
+    node = node_at_index(index)
+    counter = 0
+    string = ""
+
+    until counter == return_count
+      string << ("#{node.data.to_s} ")
+      node = node.next_node
+      counter += 1
+    end
+    string.rstrip
+  end
+
+  def includes?(data)
+    check = false
+    node = @head
+    until node.next_node.nil?
+      check = true if node.data == data
+      node = node.next_node
+    end
+    check
+  end
+
+  def pop
+    node = @head
+    until node.next_node.next_node.nil?
+      node = node.next_node
+    end
+    popped_data = node.next_node.data
+    node.next_node = nil
+    popped_data
   end
 
 end
