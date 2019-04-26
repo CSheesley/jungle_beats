@@ -1,4 +1,4 @@
-class JungleBeat
+class JungleBeat < LinkedList
   attr_reader :list
 
   def initialize
@@ -12,6 +12,11 @@ class JungleBeat
 
   def count
     self.list.count
+  end
+
+  def play(speed)
+    beats = self.list.to_string
+    `say -r #{speed} #{beats}`
   end
 
 end

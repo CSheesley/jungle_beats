@@ -23,4 +23,27 @@ RSpec.describe JungleBeat, type: :class do
 
     expect(jb.count).to eq(6)
   end
+
+  it 'can play a beat' do
+
+    jb = JungleBeat.new
+
+    jb.append("deep doo ditt woo hoo shu")
+
+    expect(jb.count).to eq(6)
+
+    jb.play(250) #should audibly play the beat data of the list
+  end
+
+  it 'is looking forward to Mod 3' do
+
+    jb = JungleBeat.new
+
+    phrase = "Neat project. Looking forward to a great Mod 3!"
+
+    jb.append(phrase)
+
+    jb.play(200)
+  end
+  
 end
